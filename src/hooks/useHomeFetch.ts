@@ -1,13 +1,14 @@
 import { useState, useEffect } from 'react';
 
-import API from '../API';
+// API
+import API, { Movie } from '../API';
 
 // Helper
 import { isPersistedState } from '../helpers';
 
 const initialState = {
     page: 0,
-    results: [],
+    results: [] as Movie[],
     total_pages: 0,
     total_results: 0,
 };
@@ -19,17 +20,17 @@ export const useHomeFetch = () => {
     const [error, setError] = useState(false);
     const [isLoadingMore, setLoadingMore] = useState(false);
 
-    const fetchMovies = async (page, searchTerm = '') => {
+    const fetchMovies = async (page: number, searchTerm = '') => {
         try {
             setError(false);
             setLoading(true);
 
             const movies = await API.fetchMovies(searchTerm, page);
 
-            setState(prev => ({
+            setState( prev => ( {
                 ...movies,
                 results: page > 1 ? [...prev.results, ...movies.results] : [...movies.results],
-            }));
+            } ) );
         }
         catch(error) {
             setError(true);

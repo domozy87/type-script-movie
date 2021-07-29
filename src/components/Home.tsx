@@ -19,7 +19,7 @@ import API from '../API';
 // Image
 import NoImage from '../images/no-image.jpeg';
 
-const Home = () => {
+const Home: React.FC = () => {
     const { state, loading, error, setSearchTerm, setLoadingMore } = useHomeFetch();
 
     if ( error ) {

@@ -1,23 +1,21 @@
 import React from 'react';
 
-// Props type
-import PropTypes from 'prop-types';
-
 // Styles
 import { Wrapper, Image } from './Actor.styles';
 
-const Actor = ( { name, character, imageUrl } ) => (
+// Types
+type Props = {
+    name: string;
+    character: string;
+    imageUrl: string;
+};
+
+const Actor: React.FC<Props> = ( { name, character, imageUrl } ) => (
     <Wrapper>
         <Image src={imageUrl} alt="Actor Thumb" />
         <h3>{name}</h3>
         <p>{character}</p>
     </Wrapper>
 );
-
-Actor.propTypes = {
-    name: PropTypes.string,
-    character: PropTypes.string,
-    imageUrl: PropTypes.string,
-}
 
 export default Actor;
